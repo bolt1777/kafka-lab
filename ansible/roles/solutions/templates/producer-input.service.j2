@@ -1,0 +1,13 @@
+[Unit]
+Description=Producer-Input Service
+After=network.target
+
+[Service]
+Type=simple
+User=vagrant
+ExecStart=/vagrant/download/producer-input.sh
+ExecStop=/bin/kill -15 $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

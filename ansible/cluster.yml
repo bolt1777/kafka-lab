@@ -1,0 +1,32 @@
+- hosts: all
+  remote_user: vagrant
+  serial: 100%
+  roles:
+    - common
+    - java
+
+- hosts: zookeeper
+  remote_user: vagrant
+  serial: 100%
+  roles:
+    - zookeeper
+
+- hosts: kafka
+  remote_user: vagrant
+  serial: 100%
+  roles:
+    - kafka
+    - { role: kafka-connect, tags: ['kafka-connect'] }
+
+- hosts: solutions
+  remote_user: vagrant
+  serial: 100%
+  roles:
+    - solutions
+
+# ONLY ON FIRST NODE
+- hosts: grafana
+  remote_user: vagrant
+  serial: 100%
+  roles:
+    - { role: promeutheus, tags: ['promeutheus'] }

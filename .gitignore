@@ -1,0 +1,13 @@
+# Generel
+.idea/
+.DS_Store
+
+# Project
+.vagrant/
+download/
+
+# Java
+target/
+
+# Ansible
+cluster.retry

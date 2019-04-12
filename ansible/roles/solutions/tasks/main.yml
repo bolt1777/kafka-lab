@@ -1,0 +1,32 @@
+---
+- name: install systemd services - 1
+  become: yes
+  become_method: sudo
+  template:
+    src: templates/producer-input.service.j2
+    dest: "{{ system_units }}/producer-input.service"
+  register: producer-input_service
+
+- name: install systemd services - 2
+  become: yes
+  become_method: sudo
+  template:
+    src: templates/producer-output.service.j2
+    dest: "{{ system_units }}/producer-output.service"
+  register: producer-output_service
+
+- name: restart solution 1
+  become: yes
+  become_method: sudo
+  systemd:
+    enabled: yes
+    state: restarted
+    name: producer-input.service
+
+- name: restart solution 2
+  become: yes
+  become_method: sudo
+  systemd:
+    enabled: yes
+    state: restarted
+    name: producer-output.service
