@@ -17,6 +17,4 @@ rules:
 - pattern : kafka.utils<type=Throttler, name=cleaner-io><>OneMinuteRate
 - pattern : kafka.log<type=Log, name=LogEndOffset, topic=(.+), partition=(.+)><>Value
 - pattern : kafka.log<type=Log, name=LogStartOffset, topic=(.+), partition=(.+)><>Value
-- pattern : kafka.log<type=Log, name=LogEndOffset, topic=(.+), partition=(.+)><>Value
-- pattern : kafka.log<type=Log, name=LogStartOffset, topic=(.+), partition=(.+)><>Value
 - pattern : java.lang<type=(.*)>
