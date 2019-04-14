@@ -1,4 +1,10 @@
 ---
+- name: Create Apache Kafka input topic.
+  shell: /home/vagrant/kafka/bin/kafka-topics.sh --zookeeper kafka-lab-1:2181 --replication-factor 1 --partitions 1 --topic input --create
+
+- name: Create Apache Kafka output topic.
+  shell: /home/vagrant/kafka/bin/kafka-topics.sh --zookeeper kafka-lab-1:2181 --replication-factor 1 --partitions 1 --topic output --create
+
 - name: install systemd services - 1
   become: yes
   become_method: sudo
