@@ -85,3 +85,38 @@
     src: "{{kafka_home}}"
     dest: /home/vagrant/kafka
     state: link
+
+- name: create jmx_exporter folder
+  become: yes
+  become_method: sudo
+  file:
+    owner: vagrant
+    group: vagrant
+    path: "{{ usr_local }}/jmx_exporter"
+    state: directory
+
+- name: "download {{ jmx_exporter_url }}"
+  run_once: true
+  get_url:
+    url: "{{ jmx_exporter_url }}"
+    dest: "{{ download }}/{{ jmx_exporter_name }}.jar"
+
+- name: "copy {{ jmx_exporter_name }}.jar"
+  copy:
+    remote_src: True
+    src: "{{ download }}/{{ jmx_exporter_name }}.jar"
+    dest: "{{ usr_local }}/jmx_exporter"
+
+- name: push prometheus_kafka.yml to jmx_exporter
+  template:
+    src: templates/prometheus_kafkfa.yml.j2
+    dest: "{{ usr_local }}/jmx_exporter/prometheus_kafka.yml"
+
+- name: added kafka options to Kafka in order to send jmx data to exporter
+  blockinfile:
+    dest: "/home/vagrant/kafka/bin/kafka-server-start.sh"
+    insertbefore: 'exec'
+    block: |
+      JMX_DIR="/usr/local/jmx_exporter"
+      export KAFKA_OPTS="$KAFKA_OPTS -javaagent:$JMX_DIR/jmx_exporter.jar=1234:$JMX_DIR/prometheus_kafka.yml"
+  notify: Kafka Restart

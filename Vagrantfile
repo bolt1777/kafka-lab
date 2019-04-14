@@ -6,7 +6,7 @@ KAFKA = 3
 Vagrant.configure("2") do |config|
 
 
-  config.vm.box = "generic/centos7"
+  config.vm.box = "puppetlabs/centos-7.0-64-puppet"
   config.ssh.forward_agent = true # So that boxes don't have to setup key-less ssh
   config.ssh.insert_key = false # To generate a new ssh key and don't use the default Vagrant one
 
@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
 
       if i == KAFKA
         kafka.vm.provision :ansible do |ansible|
-          ansible.limit = "zookeeper,kafka,kafka-manager-download,kafka-connect"
+          ansible.limit = "zookeeper,kafka,grafana"
           ansible.playbook = "ansible/cluster.yml"
           ansible.inventory_path = "ansible/inventories/vbox"
         end

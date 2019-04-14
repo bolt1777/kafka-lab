@@ -3,3 +3,5 @@ version: "2.1.1"
 kafka: kafka_2.11-{{ version }}
 file: "{{ kafka }}.tgz"
 url: http://mirror.dkd.de/apache/kafka/{{ version }}/{{ file }}
+jmx_exporter_url: https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.9/jmx_prometheus_javaagent-0.9.jar
+jmx_exporter_name: jmx_exporter
