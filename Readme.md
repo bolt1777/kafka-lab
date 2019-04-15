@@ -8,8 +8,8 @@
 ## Installation
 
 ```bash
-git clone https://github.com/me
-cd me
+git clone https://github.com/dmarych/Kafka-Lab.git
+cd Kafka-Lab
 vagrant plugin install vagrant-hostmanager
 vagrant up
 ```
@@ -30,7 +30,7 @@ To access Grafana dashboard, use admin/admin login credentials, add Prometheus d
 
 To log on to servers, use vagrant ssh
 
-``bash
+``
 vagrant ssh kafka-lab-2
 ``
 
