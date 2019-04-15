@@ -1,5 +1,0 @@
-- hosts: kafka-lab-3
-  remote_user: vagrant
-  serial: 100%
-  roles:
-    - { role: promeutheus, tags: ['promeutheus'] }
