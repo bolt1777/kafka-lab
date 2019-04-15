@@ -5,6 +5,20 @@
 - name: Create Apache Kafka output topic.
   shell: /home/vagrant/kafka/bin/kafka-topics.sh --zookeeper kafka-lab-1:2181 --replication-factor 1 --partitions 1 --topic output --create
 
+- name: copying solutuin 1
+  become: yes
+  become_method: sudo
+  copy:
+    src: template/producer-input.sh
+    dest: /usr/local/bin/producer-input.sh
+
+- name: copying solutuin 2
+  become: yes
+  become_method: sudo
+  copy:
+    src: template/producer-output.sh
+    dest: /usr/local/bin/producer-output.sh
+
 - name: install systemd services - 1
   become: yes
   become_method: sudo
