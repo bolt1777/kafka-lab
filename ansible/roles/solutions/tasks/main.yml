@@ -9,15 +9,17 @@
   become: yes
   become_method: sudo
   copy:
-    src: template/producer-input.sh
+    src: files/producer-input.sh
     dest: /usr/local/bin/producer-input.sh
+    mode: +x 
 
 - name: copying solutuin 2
   become: yes
   become_method: sudo
   copy:
-    src: template/producer-output.sh
+    src: files/producer-output.sh
     dest: /usr/local/bin/producer-output.sh
+    mode: +x 
 
 - name: install systemd services - 1
   become: yes
