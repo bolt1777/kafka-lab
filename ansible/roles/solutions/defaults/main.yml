@@ -1,0 +1,4 @@
+---
+pip_version: "19.0.*"
+pip_get_pip_version: "latest"
+pip_executable: "pip"

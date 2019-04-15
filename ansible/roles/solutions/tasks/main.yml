@@ -1,16 +1,32 @@
 ---
-- name: Copy rpm file to server
-  copy:
-     src: files/python2-pip-8.1.2-8.el7.noarch.rpm 
-     dest: /vagrant/download/python2-pip-8.1.2-8.el7.noarch.rpm
+- name: Get installed pip version
+  command: "{{ pip_executable }} --version"
+  register: pip_version_output
+  ignore_errors: yes
+  changed_when: false
 
-- name: Install package.
-  yum:
-     name: /vagrant/download/python2-pip-8.1.2-8.el7.noarch.rpm
-     state: present
+- name: Download get-pip.py
+  vars:
+      pip_version_url: "{{ (pip_get_pip_version == 'latest') | ternary('', pip_get_pip_version) }}"
+      required_vars:
+          - pip_get_pip_version
+  get_url:
+      url: 'https://bootstrap.pypa.io/{{ pip_version_url }}/get-pip.py'
+      dest: /tmp/get-pip.py
+  when: (pip_version_output is failed) or not pip_version_output.stdout is search(pip_version)
+
+- name: Install pip
+  become: yes
+  become_method: sudo
+  command: "{{ ansible_python_interpreter if ansible_python_interpreter is defined else 'python' }} get-pip.py pip=={{ pip_version }}"
+  when: "(pip_version_output is failed) or not pip_version_output.stdout is search('pip ' + pip_version)"
+  args:
+    chdir: /tmp
 
 - pip:
     name: kafka-python
+    version: 1.4.6
+  sudo: yes
 
 - name: copying solutuin 1
   become: yes
