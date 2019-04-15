@@ -1,6 +1,6 @@
 127.0.0.1   localhost
 ::1         localhost ip6-localhost ip6-loopback
 
-{% for item in groups['all'] %}
-{{ hostvars[item].ansible_all_ipv4_addresses[1] }} {{ item }}
-{% endfor %}
+192.168.10.2 kafka-lab-1
+192.168.10.3 kafka-lab-2
+192.168.10.4 kafka-lab-3
