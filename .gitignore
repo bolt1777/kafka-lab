@@ -6,8 +6,5 @@
 .vagrant/
 download/
 
-# Java
-target/
-
 # Ansible
 cluster.retry
