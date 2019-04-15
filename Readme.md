@@ -34,5 +34,3 @@ To log on to servers, use vagrant ssh
 vagrant ssh kafka-lab-2
 ``
 
-##Prerequistes
-Vagrant, VirtualBox, Ansible, vagrant-hostmanager 
