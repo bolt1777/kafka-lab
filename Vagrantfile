@@ -23,11 +23,11 @@ Vagrant.configure("2") do |config|
       kafka.vm.hostname = "kafka-lab-#{i}"
       kafka.vm.provider "virtualbox" do |vb|
         if i == 1
+          vb.memory = "3072"
+          vb.cpus = "3"
+        else
           vb.memory = "2048"
           vb.cpus = "2"
-        else
-          vb.memory = "1024"
-          vb.cpus = "1"
         end
       end
       kafka.vm.network :private_network, ip: "192.168.10.#{1 + i}", auto_config: true
