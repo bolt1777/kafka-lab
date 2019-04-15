@@ -8,8 +8,8 @@
 ## Installation
 
 ```bash
-git clone https://github.com/dmarych/kafka-Lab.git
-cd kafka-Lab
+git clone https://github.com/dmarych/kafka-lab.git
+cd kafka-lab
 vagrant plugin install vagrant-hostmanager
 vagrant up
 ```
