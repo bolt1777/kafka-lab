@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=simple
 User=vagrant
-ExecStart=/usr/local/bin/producer-output.sh
+ExecStart=/usr/local/bin/producer-output.py
 ExecStop=/bin/kill -15 $MAINPID
 Restart=on-failure
 

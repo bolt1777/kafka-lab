@@ -1,24 +1,31 @@
 ---
-- name: Create Apache Kafka input topic.
-  shell: /home/vagrant/kafka/bin/kafka-topics.sh --zookeeper kafka-lab-1:2181 --replication-factor 1 --partitions 1 --topic input --create
+- name: Copy rpm file to server
+  copy:
+     src: files/python2-pip-8.1.2-8.el7.noarch.rpm 
+     dest: /vagrant/download/python2-pip-8.1.2-8.el7.noarch.rpm
 
-- name: Create Apache Kafka output topic.
-  shell: /home/vagrant/kafka/bin/kafka-topics.sh --zookeeper kafka-lab-1:2181 --replication-factor 1 --partitions 1 --topic output --create
+- name: Install package.
+  yum:
+     name: /vagrant/download/python2-pip-8.1.2-8.el7.noarch.rpm
+     state: present
+
+- pip:
+    name: kafka-python
 
 - name: copying solutuin 1
   become: yes
   become_method: sudo
   copy:
-    src: files/producer-input.sh
-    dest: /usr/local/bin/producer-input.sh
+    src: files/producer-input.py
+    dest: /usr/local/bin/producer-input.py
     mode: +x 
 
 - name: copying solutuin 2
   become: yes
   become_method: sudo
   copy:
-    src: files/producer-output.sh
-    dest: /usr/local/bin/producer-output.sh
+    src: files/producer-output.py
+    dest: /usr/local/bin/producer-output.py
     mode: +x 
 
 - name: install systemd services - 1

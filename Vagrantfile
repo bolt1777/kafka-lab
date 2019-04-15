@@ -6,7 +6,7 @@ KAFKA = 3
 Vagrant.configure("2") do |config|
 
 
-  config.vm.box = "puppetlabs/centos-7.0-64-puppet"
+  config.vm.box = "geerlingguy/centos7"
   config.ssh.forward_agent = true # So that boxes don't have to setup key-less ssh
   config.ssh.insert_key = false # To generate a new ssh key and don't use the default Vagrant one
 

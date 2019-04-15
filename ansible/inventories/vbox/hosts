@@ -1,9 +1,8 @@
 [zookeeper]
-kafka-lab-1
+kafka-lab-1 
 
 [kafka]
 kafka-lab-1
-kafka-lab-2
 
 [solutions]
 kafka-lab-2

@@ -120,3 +120,10 @@
       JMX_DIR="/usr/local/jmx_exporter"
       export KAFKA_OPTS="$KAFKA_OPTS -javaagent:$JMX_DIR/jmx_exporter.jar=1234:$JMX_DIR/prometheus_kafka.yml"
   notify: Kafka Restart
+
+- name: Create Apache Kafka input topic.
+  shell: /home/vagrant/kafka/bin/kafka-topics.sh --zookeeper kafka-lab-1:2181 --replication-factor 1 --partitions 1 --topic input --create
+
+- name: Create Apache Kafka output topic.
+  shell: /home/vagrant/kafka/bin/kafka-topics.sh --zookeeper kafka-lab-1:2181 --replication-factor 1 --partitions 1 --topic output --create
+

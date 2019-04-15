@@ -16,7 +16,6 @@
   serial: 100%
   roles:
     - kafka
-    - { role: kafka-connect, tags: ['kafka-connect'] }
 
 - hosts: solutions
   remote_user: vagrant
