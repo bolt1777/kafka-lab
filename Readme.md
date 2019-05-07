@@ -26,6 +26,20 @@ To access Grafana dashboard, use admin/admin login credentials, add Prometheus d
 | 192.168.10.3 | kafka-lab-2  | Solutions server 		        | 2GB RAM  |
 | 192.168.10.4 | kafka-lab-3  | Promeutheus, Grafana            | 2GB RAM  |
 
+## The setup does the following:
+
+- Install and configure Kafka on VM1 (with Ansible)
+
+- Create topics on Kafka 'input', 'output'
+
+- Create solution 1 that produces epoch timestamp in ms to 'input' once per second
+
+- Create solution 2 that consumes from topic 1, transforms input message to date string (RFC 3339), sends to topic 'output'
+
+- Deploy both solutions to VM2. They should both be managed as systems services.
+
+- In VM3 install Prometheus, Grafana. Export Kafka metrics and metric from solutions 1,2 and visualize them in Grafana.
+
 ## Vagrant usage
 
 To log on to servers, use vagrant ssh
